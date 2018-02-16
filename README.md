@@ -1,6 +1,6 @@
 # UdaciCards
 
-Project for Udacity's React & Redux course.
+Project for Udacity's React Native course.
 
 ## Build Instructions
 
