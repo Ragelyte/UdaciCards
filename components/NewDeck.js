@@ -2,17 +2,16 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TouchableNativeFeedback,
   KeyboardAvoidingView,
-  ScrollView,
 } from 'react-native';
 import { TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { addDeck } from '../actions/index';
+import styles from '../styles/NewDeckStyle';
 
 class NewDeck extends Component {
-  addDeck = () => {
+  handleAddDeck = () => {
     if (this.state.title.trim()) {
       this.props
         .addDeck({
@@ -51,7 +50,7 @@ class NewDeck extends Component {
         />
         <TouchableNativeFeedback
           background={TouchableNativeFeedback.SelectableBackground()}
-          onPress={this.addDeck}
+          onPress={this.handleAddDeck}
         >
           <View style={styles.btn}>
             <Text style={styles.btnText}>Submit</Text>
@@ -62,48 +61,10 @@ class NewDeck extends Component {
   }
 }
 
-function mapStateToProps() {
-  return {
-    //
-  };
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     addDeck: deck => dispatch(addDeck(deck)),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewDeck);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-  input: {
-    height: 40,
-    width: 300,
-    borderColor: 'black',
-    borderWidth: 2,
-    borderRadius: 2,
-    textAlign: 'center',
-  },
-  text: {
-    fontSize: 50,
-    textAlign: 'center',
-  },
-  btn: {
-    backgroundColor: '#009fff',
-    padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 2,
-  },
-  btnText: {
-    color: 'white',
-  },
-});
+export default connect(null, mapDispatchToProps)(NewDeck);

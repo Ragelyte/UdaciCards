@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableNativeFeedback,
-  ScrollView,
-} from 'react-native';
-import { white } from '../utils/colors';
+import { View, Text, TouchableNativeFeedback, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchDecks } from '../utils/api';
 import { receiveDecks } from '../actions/index';
+import styles from '../styles/QuizViewStyle';
 
 class QuizView extends React.Component {
   componentDidMount() {
@@ -70,12 +64,47 @@ class QuizView extends React.Component {
       <ScrollView>
         <View style={{ flex: 1 }}>
           {question === undefined ? (
-            <View>
+            <View style={styles.container}>
               <Text style={styles.text}>
+                Your Score:
                 {Math.round(
                   this.state.count * 100 / this.props.deck.questions.length
-                )}% correct
+                )}%
               </Text>
+
+              <View style={styles.itemBtn}>
+                <View>
+                  <View>
+                    <TouchableNativeFeedback
+                      background={TouchableNativeFeedback.SelectableBackground()}
+                      onPress={() =>
+                        this.props.navigation.navigate('QuizView', {
+                          title: this.props.deck.title,
+                        })
+                      }
+                    >
+                      <View style={styles.restartBtn}>
+                        <Text style={styles.btnText}>Restart Quiz</Text>
+                      </View>
+                    </TouchableNativeFeedback>
+                  </View>
+
+                  <View>
+                    <TouchableNativeFeedback
+                      background={TouchableNativeFeedback.SelectableBackground()}
+                      onPress={() =>
+                        this.props.navigation.navigate('DeckView', {
+                          title: this.props.deck.title,
+                        })
+                      }
+                    >
+                      <View style={styles.restartBtn}>
+                        <Text style={styles.btnText}>Return to Deck</Text>
+                      </View>
+                    </TouchableNativeFeedback>
+                  </View>
+                </View>
+              </View>
             </View>
           ) : (
             <ScrollView>
@@ -146,74 +175,3 @@ function mapStateToProps(decks, ownProps) {
   };
 }
 export default connect(mapStateToProps)(QuizView);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  input: {
-    height: 40,
-    width: 300,
-    borderColor: 'black',
-    borderWidth: 2,
-    borderRadius: 2,
-  },
-  text: {
-    fontSize: 25,
-    textAlign: 'center',
-  },
-  correctBtn: {
-    backgroundColor: 'green',
-    padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 2,
-  },
-  incorrectBtn: {
-    backgroundColor: 'red',
-    padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 10,
-    borderRadius: 2,
-  },
-  btnText: {
-    color: 'white',
-  },
-  itemTitle: {
-    backgroundColor: 'rgba(0,0,0,0)',
-    borderRadius: 2,
-    padding: 70,
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 17,
-    justifyContent: 'center',
-  },
-  itemBtn: {
-    backgroundColor: 'rgba(0,0,0,0)',
-    borderRadius: 2,
-    padding: 70,
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 17,
-    justifyContent: 'center',
-  },
-  answer: {
-    textAlign: 'center',
-    color: 'red',
-    fontWeight: 'bold',
-  },
-  answerText: {
-    fontSize: 25,
-    textAlign: 'center',
-  },
-  numOfCards: {
-    fontSize: 20,
-  },
-});

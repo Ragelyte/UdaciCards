@@ -26,7 +26,7 @@ const dummyData = {
   },
 };
 
-const DECK_STORAGE_KEY = '@UdaciCards:decks';
+const DECK_STORAGE_KEY = '@UdaciCards:decks-2';
 
 export function fetchDecks() {
   return AsyncStorage.getItem(DECK_STORAGE_KEY).then(results => {
@@ -35,6 +35,8 @@ export function fetchDecks() {
 
       return dummyData;
     }
+
+    console.log(JSON.parse(results))
     return JSON.parse(results);
   });
 }
@@ -49,9 +51,10 @@ export function addDeck(deck) {
 
 export function addCard(deck, card) {
   return fetchDecks().then(results => {
-    deck.questions.push(card);
 
-    results[deck.title] = deck;
+    const newDeck = { ...deck, questions: [...deck.questions, card] };
+
+    results[deck.title] = newDeck;
 
     AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(results));
   });

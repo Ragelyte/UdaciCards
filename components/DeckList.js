@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { fetchDecks } from '../utils/api';
 import { receiveDecks } from '../actions/index';
 import { connect } from 'react-redux';
-import { white } from '../utils/colors';
 import { maybePluralize } from '../utils/helpers';
+import styles from '../styles/DeckListStyle';
 
 class DeckList extends Component {
   componentDidMount() {
@@ -52,34 +46,3 @@ function mapStateToProps(decks) {
 }
 
 export default connect(mapStateToProps)(DeckList);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 30,
-    textAlign: 'center',
-  },
-  numOfCards: {
-    textAlign: 'center',
-  },
-  item: {
-    backgroundColor: white,
-    borderRadius: 2,
-    padding: 70,
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 17,
-    justifyContent: 'center',
-    shadowRadius: 3,
-    shadowOpacity: 0.8,
-    shadowColor: 'black',
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    alignSelf: 'stretch',
-  },
-});
