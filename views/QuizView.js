@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchDecks } from '../utils/api';
 import { receiveDecks } from '../actions/index';
 import styles from '../styles/QuizViewStyle';
+import FlipCard from 'react-native-flip-card';
 
 class QuizView extends React.Component {
   componentDidMount() {
@@ -78,8 +79,11 @@ class QuizView extends React.Component {
                     <TouchableNativeFeedback
                       background={TouchableNativeFeedback.SelectableBackground()}
                       onPress={() =>
-                        this.props.navigation.navigate('QuizView', {
-                          title: this.props.deck.title,
+                        this.setState({
+                          isAnswerOpened: false,
+                          isQuestionOpened: false,
+                          count: 0,
+                          current: 0,
                         })
                       }
                     >
@@ -92,11 +96,7 @@ class QuizView extends React.Component {
                   <View>
                     <TouchableNativeFeedback
                       background={TouchableNativeFeedback.SelectableBackground()}
-                      onPress={() =>
-                        this.props.navigation.navigate('DeckView', {
-                          title: this.props.deck.title,
-                        })
-                      }
+                      onPress={() => this.props.navigation.goBack()}
                     >
                       <View style={styles.restartBtn}>
                         <Text style={styles.btnText}>Return to Deck</Text>

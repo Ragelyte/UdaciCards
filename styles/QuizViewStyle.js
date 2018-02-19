@@ -1,4 +1,4 @@
-import {blue, white} from '../utils/colors';
+import {blue, gray, white} from '../utils/colors';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     itemTitle: {
-        backgroundColor: 'rgba(0,0,0,0)',
+        backgroundColor: gray,
         borderRadius: 2,
         padding: 70,
         marginLeft: 10,
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     itemBtn: {
-        backgroundColor: 'rgba(0,0,0,0)',
+        backgroundColor: gray,
         borderRadius: 2,
         padding: 70,
         marginLeft: 10,

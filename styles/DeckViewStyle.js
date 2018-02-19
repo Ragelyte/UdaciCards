@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { white } from '../utils/colors';
+import { white, blue, black, gray } from '../utils/colors';
 
 const styles = StyleSheet.create({
     container: {
@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
         paddingRight: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        borderColor: '#000000',
+        borderColor: black,
         borderRadius: 2,
         borderWidth: 1,
     },
     startQuizBtn: {
-        backgroundColor: '#009fff',
+        backgroundColor: blue,
         padding: 10,
         paddingLeft: 50,
         paddingRight: 50,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         color: white,
     },
     itemTitle: {
-        backgroundColor: 'rgba(0,0,0,0)',
+        backgroundColor: gray,
         borderRadius: 2,
         padding: 70,
         marginLeft: 10,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     itemBtn: {
-        backgroundColor: 'rgba(0,0,0,0)',
+        backgroundColor: gray,
         borderRadius: 2,
         padding: 70,
         marginLeft: 10,

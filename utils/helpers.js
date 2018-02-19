@@ -9,18 +9,16 @@ export function clearLocalNotification() {
   );
 }
 
-function createNotification() {
-  return {
-    title: 'Time to study!',
-    body: "Don't forget to study today!",
-    android: {
-      sound: true,
-      priority: 'high',
-      sticky: false,
-      vibrate: true,
-    },
-  };
-}
+const createNotification = () => ({
+  title: 'Time to study!',
+  body: "Don't forget to study today!",
+  android: {
+    sound: true,
+    priority: 'high',
+    sticky: false,
+    vibrate: true,
+  },
+});
 
 export function setLocalNotification() {
   AsyncStorage.getItem(NOTIFICATION_KEY)

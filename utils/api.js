@@ -36,7 +36,7 @@ export function fetchDecks() {
       return dummyData;
     }
 
-    console.log(JSON.parse(results))
+    console.log(JSON.parse(results));
     return JSON.parse(results);
   });
 }
@@ -51,7 +51,6 @@ export function addDeck(deck) {
 
 export function addCard(deck, card) {
   return fetchDecks().then(results => {
-
     const newDeck = { ...deck, questions: [...deck.questions, card] };
 
     results[deck.title] = newDeck;

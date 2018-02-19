@@ -25,9 +25,7 @@ class NewQuestionView extends React.Component {
           answer: this.state.answer,
         })
         .then(() => {
-          this.props.navigation.navigate('DeckView', {
-            title: this.props.deck.title,
-          });
+          this.props.navigation.goBack();
         })
         .then(() => {
           this.setState({
